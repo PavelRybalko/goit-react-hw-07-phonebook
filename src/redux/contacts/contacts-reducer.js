@@ -1,15 +1,14 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
-// import actions from './contacts-actions';
-import fetchContacts from './contacts-operations';
+// import fetchContacts from './contacts-operations';
 import {
-  fetchContactsSuccess,
   fetchContactsRequest,
+  fetchContactsSuccess,
   fetchContactsError,
   addContactRequest,
   addContactSuccess,
   addContactError,
-  deleteContactSuccess,
   deleteContactRequest,
+  deleteContactSuccess,
   deleteContactError,
   changeFilter,
 } from './contacts-actions';
@@ -43,6 +42,7 @@ const isLoading = createReducer(false, {
   [addContactSuccess]: () => false,
   [addContactError]: () => false,
   [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
   [deleteContactError]: () => false,
   [fetchContactsRequest]: () => true,
   [fetchContactsSuccess]: () => false,

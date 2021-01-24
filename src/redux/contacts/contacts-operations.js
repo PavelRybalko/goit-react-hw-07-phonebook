@@ -1,6 +1,5 @@
-// import contactActions from './contacts-actions';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import phonebookAPI from 'services/phonebookAPI';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import phonebookAPI from 'services/phonebookAPI';
 import * as actions from './contacts-actions';
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:4040';
@@ -17,6 +16,17 @@ axios.defaults.baseURL = 'http://localhost:4040';
 //     }
 //   },
 // );
+
+const fetchContacts = () => async dispatch => {
+  dispatch(actions.fetchContactsRequest());
+
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(actions.fetchContactsSuccess(data));
+  } catch (error) {
+    dispatch(actions.fetchContactsError(error));
+  }
+};
 
 const addContact = (name, number) => dispatch => {
   const contact = { name, number };
@@ -35,15 +45,6 @@ const deleteContact = id => dispatch => {
     .delete(`/contacts/${id}`)
     .then(() => dispatch(actions.deleteContactSuccess(id)))
     .catch(error => dispatch(actions.deleteContactError(error)));
-};
-
-const fetchContacts = () => dispatch => {
-  dispatch(actions.fetchContactsRequest());
-
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(actions.fetchContactsSuccess(data)))
-    .catch(error => dispatch(actions.fetchContactsError(error)));
 };
 
 const exportModule = {

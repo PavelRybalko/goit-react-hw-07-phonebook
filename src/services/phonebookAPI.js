@@ -14,11 +14,13 @@ const deleteContact = contactId => {
   return axios.delete(`/contacts/${contactId}`);
 };
 
-export default {
+const exportModule = {
   fetchContacts,
   addContact,
   deleteContact,
 };
+
+export default exportModule;
 
 // export async function fetchContacts() {
 //   const { data } = await axios.get('/books');
