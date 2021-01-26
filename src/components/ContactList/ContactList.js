@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './ContactList.module.css';
 import ContactItem from '../ContactItem';
+import { Loader } from '../Loader';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const isLoadingContacts = useSelector(contactsSelectors.getIsLoading);
+  const isContactsLoading = useSelector(contactsSelectors.getLoading);
   const contacts = useSelector(contactsSelectors.getVisibleContacts);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const ContactList = () => {
   return (
     <>
       <h2 className={s.title}>Contacts</h2>
-      {isLoadingContacts && <h1 className={s.loading}>Загружаю...</h1>}
+      {isContactsLoading && <Loader />}
       {contacts.length > 0 && (
         <ul className={s.ContactList}>
           {contacts.map(contact => (

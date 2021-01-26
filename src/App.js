@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Container from './components/Container';
 import ContactList from './components/ContactList';
 import ContactForm from './components/ContactForm';
@@ -10,6 +12,7 @@ function App() {
       <ContactForm />
       <Filter />
       <ContactList />
+      <ToastContainer autoClose={3000} />
     </Container>
   );
 }

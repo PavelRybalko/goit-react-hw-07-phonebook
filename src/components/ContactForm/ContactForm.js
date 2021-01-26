@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { contactsSelectors, contactsOperations } from 'redux/contacts';
 import s from './ContactForm.module.css';
 
@@ -40,7 +40,9 @@ function ContactForm() {
 
   const validateForm = () => {
     if (!name || !number) {
-      alert('Some fields are empty! Please write something');
+      toast.error('Some fields are empty! Please write something', {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return;
     }
 
