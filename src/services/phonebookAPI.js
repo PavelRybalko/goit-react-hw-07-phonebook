@@ -21,8 +21,3 @@ const exportModule = {
 };
 
 export default exportModule;
-
-// export async function fetchContacts() {
-//   const { data } = await axios.get('/books');
-//   return data;
-// }

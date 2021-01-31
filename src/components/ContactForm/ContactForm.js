@@ -32,7 +32,7 @@ function ContactForm() {
 
     const isValidatedForm = validateForm();
     if (!isValidatedForm) return;
-    dispatch(contactsOperations.addContact(name, number));
+    dispatch(contactsOperations.addContact({ name, number }));
 
     setName('');
     setNumber('');
